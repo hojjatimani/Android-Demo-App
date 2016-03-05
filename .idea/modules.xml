@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/BefrestExample.iml" filepath="$PROJECT_DIR$/BefrestExample.iml" />
+      <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/befrest/befrest.iml" filepath="$PROJECT_DIR$/befrest/befrest.iml" />
+    </modules>
+  </component>
+</project>
