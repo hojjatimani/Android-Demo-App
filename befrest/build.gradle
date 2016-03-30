@@ -14,7 +14,7 @@ ext {
     siteUrl = 'http://bef.rest'
     gitUrl = 'https://github.com/hojjat-imani/BefrestImpl.git'
 
-    libraryVersion = '1.1.0-test'
+    libraryVersion = '1.1.6'
 
     developerId = 'befrest'
     developerName = 'BefrestImpl'
@@ -33,7 +33,7 @@ android {
         minSdkVersion 10
         targetSdkVersion 23
         versionCode 1
-        versionName "1.1.2"
+        versionName "1.1.4"
     }
     buildTypes {
         release {
@@ -44,6 +44,9 @@ android {
 }
 
 //for generating libraries jar file
+//task jar(type: Jar, dependsOn: 'assembleRelease') {
+//    from fileTree(dir: 'handleException/intermediates/classes/release')
+//}
 task jar(type: Jar, dependsOn: 'assembleRelease') {
     from fileTree(dir: 'build/intermediates/classes/release')
 }

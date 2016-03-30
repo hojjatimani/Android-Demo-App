@@ -10,8 +10,8 @@
 
     <!--Used Only In Checks In Sleeps-->
     <uses-permission android:name="android.permission.WAKE_LOCK" />
-    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
-    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
+    <!--<uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />-->
+    <!--<uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />-->
 
     <uses-permission android:name="android.permission.VIBRATE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
@@ -52,10 +52,7 @@
             </intent-filter>
         </receiver>
 
-        <!--used only in checkes in sleep-->
-        <receiver
-            android:name="rest.bef.WakeupAlarmReceiver"
-            android:exported="false" />
+        <service android:name=".CustomPushService" />
 
         <!--<service android:name="rest.bef.PushService" />-->
         <!--<receiver-->
@@ -65,7 +62,6 @@
         <!--<action android:name="android.net.conn.CONNECTIVITY_CHANGE" />-->
         <!--</intent-filter>-->
         <!--</receiver>-->
-        <service android:name=".CustomPushService" />
 
     </application>
 

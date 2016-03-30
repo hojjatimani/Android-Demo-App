@@ -18,6 +18,7 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 
+import rest.bef.Befrest;
 import rest.bef.BefrestFactory;
 import rest.bef.BefrestMessage;
 import rest.bef.BefrestPushReceiver;

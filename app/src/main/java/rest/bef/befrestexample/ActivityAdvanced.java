@@ -140,10 +140,7 @@ public class ActivityAdvanced extends AppCompatActivity {
         else if (vId == refresh.getId()) {
             if (befrest.refresh())
                 refresh.setText("Refreshing ...");
-        } else if (vId == disableCheckInSleep.getId())
-            befrest.disableCheckInSleep();
-        else if (vId == enableCheckInSleep.getId())
-            befrest.enableCheckInSleep();
+        }
 //        else if(vId == reportClose.getId())
 //            befrest.reportOnClose(this, (int)(Math.random() * 10));
     }

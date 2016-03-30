@@ -65,6 +65,8 @@ public class ApplicationLoader extends Application {
         super.onCreate();
         if (!needsSignUp(this))
             BefrestFactory.getInstance(this).start();
+        Befrest instance = BefrestFactory.getInstance(this);
+        instance.getSdkVersion();
     }
 
     public static void signUpAndStart(Context context, String chId, String team) {
@@ -73,7 +75,7 @@ public class ApplicationLoader extends Application {
         editor.putString(PREF_USER_ID, chId);
         editor.commit();
         BefrestFactory.getInstance(context)
-                .advancedSetCustomPushService(CustomPushService.class)
+                .setCustomPushService(CustomPushService.class)
                 .setLogLevel(Befrest.LOG_LEVEL_VERBOSE)
                 .setChId(chId)
                 .setUId(uId)
