@@ -1,4 +1,4 @@
-package rest.bef.befrestexample;
+package rest.bef.befrestdemo;
 
 import android.app.NotificationManager;
 import android.app.PendingIntent;
@@ -12,40 +12,41 @@ import java.util.ArrayList;
 
 import rest.bef.BefrestMessage;
 import rest.bef.PushService;
+import rest.bef.befrestdemo.database.PushMsg;
 
 /**
  * Created by hojjatimani on 2/28/2016 AD.
  */
 public class CustomPushService extends PushService {
     private static final String TAG = "CustomPushService";
+    int lastMsgType;
 
     @Override
     protected void onBefrestConnected() {
         super.onBefrestConnected();
         Log.d(TAG, "onBefrestConnected()");
-        ApplicationLoader.sendPresence(this);
+        ContactsHelper.sendPresenceIfNeeded(this);
     }
 
     @Override
     protected void onPushReceived(ArrayList<BefrestMessage> messages) {
-        MyDatabaseHelper db = new MyDatabaseHelper(this);
-        boolean newMessage = false;
+        boolean newMsg = false;
         for (BefrestMessage message : messages) {
-            Message msg = new Message(message);
-            if (msg.type == Message.MSG) {
-                if (!ApplicationLoader.isJunkMessage(msg.msg)) {
-                    newMessage = true;
-                    db.insertMessage(msg);
-                }
-            } else if (msg.type == Message.SET_CONTACT) {
-                ApplicationLoader.setContacts(this, msg.msg);
+            PushMsg item = PushMsg.newFromBefrestMsg(this, message);
+            if (item.type == PushMsg.MSG) {
+                item.save(this);
+                boolean isTopic = item.topic != null;
+                String from = item.topic != null ? item.topic : item.from;
+                String notifIsFor = isTopic ? ApplicationLoader.TOPIC : from;
+                if (ApplicationLoader.shouldFireNotifFor(notifIsFor))
+                    showNotif(isTopic, from);
+            } else if (item.type == PushMsg.SET_CONTACT) {
+                ContactsHelper.setContacts(this, item.msg);
             } else {
-                handlePresenceMethod(msg.msg);
+                ContactsHelper.handlePresenceMessage(this, item.msg);
             }
         }
-        db.close();
         super.onPushReceived(messages);
-        if (newMessage && !ApplicationLoader.dontShowNotif) showNotif();
     }
 
     @Override
@@ -54,36 +55,31 @@ public class CustomPushService extends PushService {
         Log.d(TAG, "onConnectionRefreshed()");
     }
 
-    private void handlePresenceMethod(String user) {
-        String[] contacts = ApplicationLoader.getContacts(this);
-        boolean isNewUser = true;
-        for (String contact : contacts) {
-            if (user.equals(contact)) isNewUser = false;
+
+    private void showNotif(boolean isTopic, String from) {
+        Intent intent;
+        String title;
+        String msg;
+        if (isTopic) {
+            intent = new Intent(this, ActivityMain.class);
+            title = "پیام تاپیک جدید!";
+            msg = "پیام جدید در تاپیک " + from;
+        } else {
+            intent = new Intent(this, ActivityPvChat.class);
+            intent.putExtra(ActivityPvChat.USER_ID_KEY, from);
+            title = "پیام جدید!";
+            msg = "پیام جدید از " + from;
         }
-        if (isNewUser) {
-            String newContactList = "";
-            for (String contact : contacts) {
-                newContactList += contact + "@";
-            }
-            newContactList += user;
-            ApplicationLoader.setContacts(this, newContactList);
-            ApplicationLoader.sendSetContactMessage(this, newContactList);
-        }
-    }
-
-
-    private void showNotif() {
-        Intent intent = new Intent(this, ActivityMain.class);
-
+        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         // Open NotificationView.java Activity
         PendingIntent pIntent = PendingIntent.getActivity(this, 0, intent,
                 PendingIntent.FLAG_UPDATE_CURRENT);
 
         NotificationCompat.Builder builder = new NotificationCompat.Builder(this)
                 .setSmallIcon(R.mipmap.ic_launcher)
-                .setTicker("Befrest Test")
-                .setContentTitle("Befrest Test")
-                .setContentText("You have new push messages!")
+                .setTicker(getResources().getString(R.string.app_name))
+                .setContentTitle(title)
+                .setContentText(msg)
                 .setAutoCancel(true)
                 .setContentIntent(pIntent)
                 .setSound(RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION))
@@ -91,6 +87,6 @@ public class CustomPushService extends PushService {
         // Create Notification Manager
         NotificationManager notificationmanager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
         // Build Notification with Notification Manager
-        notificationmanager.notify(1, builder.build());
+        notificationmanager.notify(from.hashCode(), builder.build());
     }
 }

@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="rest.bef.befrestexample">
+    package="rest.bef.befrestdemo">
 
     <!--change following using your app package name-->
     <permission
-        android:name="rest.bef.befrestexample.permission.PUSH_SERVICE"
+        android:name="rest.bef.befrestdemo.permission.PUSH_SERVICE"
         android:protectionLevel="signature" />
-    <uses-permission android:name="rest.bef.befrestexample.permission.PUSH_SERVICE" />
+    <uses-permission android:name="rest.bef.befrestdemo.permission.PUSH_SERVICE" />
 
     <!--Used Only In Checks In Sleeps-->
     <uses-permission android:name="android.permission.WAKE_LOCK" />
@@ -25,12 +25,12 @@
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme">
+        android:theme="@style/AppTheme.NoActionBar">
 
         <activity
             android:name=".ActivityMain"
-            android:label="@string/app_name"
-            android:theme="@style/AppTheme.NoActionBar">
+            android:windowSoftInputMode="stateHidden|adjustResize"
+            android:label="@string/app_name">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -38,21 +38,17 @@
             </intent-filter>
         </activity>
 
-        <activity
-            android:name=".ActivityAdvanced"
-            android:label="@string/app_name"
-            android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".SignupActivity" />
+        <activity android:name=".ActivityPvChat"/>
 
-        <receiver
-            android:name=".MStaticPushReceiver"
-            android:exported="false">
-            <intent-filter>
-                <action android:name="rest.bef.broadcasts.ACTION_BEFREST_PUSH" />
-            </intent-filter>
-        </receiver>
+        <activity android:name=".SignupActivity" />
+        <activity android:name=".ActivitySettings"/>
 
         <service android:name=".CustomPushService" />
+
+        <provider
+            android:exported="false"
+            android:name=".database.ChatContentProvider"
+            android:authorities="rest.bef.befrestdemo.chat.contentprovider" />
 
         <!--<service android:name="rest.bef.PushService" />-->
         <!--<receiver-->

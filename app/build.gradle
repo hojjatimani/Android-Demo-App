@@ -5,7 +5,7 @@ android {
     buildToolsVersion "23.0.2"
 
     defaultConfig {
-        applicationId "rest.bef.befrestexample"
+        applicationId "rest.bef.befrestdemo"
         minSdkVersion 10
         targetSdkVersion 22
         versionCode 2
@@ -25,6 +25,7 @@ dependencies {
     compile 'com.android.support:appcompat-v7:23.1.1'
     compile 'com.android.support:design:23.1.1'
     compile project(':befrest')
+    compile 'com.jakewharton:butterknife:7.0.1'
 
 
 //    compile 'com.pubnub:pubnub-android:3.7.6'

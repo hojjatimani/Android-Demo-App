@@ -1,4 +1,4 @@
-package rest.bef.befrestexample;
+package rest.bef.befrestdemo;
 
 import android.app.Application;
 import android.test.ApplicationTestCase;

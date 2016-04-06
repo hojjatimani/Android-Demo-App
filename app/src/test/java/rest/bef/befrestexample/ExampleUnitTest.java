@@ -1,4 +1,4 @@
-package rest.bef.befrestexample;
+package rest.bef.befrestdemo;
 
 import org.junit.Test;
 

@@ -4,69 +4,15 @@
     android:layout_height="match_parent"
     android:background="@color/white">
 
-    <LinearLayout
-        android:id="@+id/pv"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:orientation="horizontal"
-        android:padding="@dimen/space_medium"
-        android:weightSum="1">
-
-        <LinearLayout
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="0.6"
-            android:gravity="center"
-            android:orientation="horizontal">
-
-            <TextView
-                android:id="@+id/textView5"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginRight="@dimen/space_small"
-                android:alpha="0.8"
-                android:text="\@"
-                android:textAppearance="?android:attr/textAppearanceMedium"
-                android:textColor="#444" />
-
-            <AutoCompleteTextView
-                android:id="@+id/to_channel"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginRight="@dimen/space_xlarge"
-                android:layout_weight="1"
-                android:background="@null"
-                android:ems="10"
-                android:hint="id"
-                android:inputType="textPersonName" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:background="@drawable/dialog_flat_btn_background"
-                android:padding="@dimen/space_medium"
-                android:text="Go PV"
-                android:textColor="@color/colorAccent" />
-        </LinearLayout>
-
-    </LinearLayout>
-
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:layout_below="@+id/pv"
-        android:layout_marginBottom="5dp"
-        android:background="#AAA" />
-
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_above="@+id/sendPanel"
-        android:layout_below="@id/pv"
+        android:layout_alignParentTop="true"
         android:padding="@dimen/space_medium">
 
         <android.support.v4.widget.SwipeRefreshLayout
+            android:id="@+id/refreshLayout"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_centerInParent="true">
@@ -79,13 +25,6 @@
                 android:layout_gravity="center_horizontal" />
         </android.support.v4.widget.SwipeRefreshLayout>
 
-        <TextView
-            android:id="@+id/loading"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
-            android:text="Loading ..."
-            android:textAppearance="?android:attr/textAppearanceMedium" />
     </RelativeLayout>
 
     <LinearLayout
@@ -96,6 +35,7 @@
         android:orientation="vertical">
 
         <RadioGroup
+            android:id="@+id/topic_chooser"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal">
@@ -110,6 +50,7 @@
                 android:id="@+id/topic_befrest"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:checked="true"
                 android:text="befrest" />
 
             <RadioButton
@@ -118,16 +59,22 @@
                 android:layout_height="wrap_content" />
 
             <EditText
+                android:id="@+id/other_topic_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="@null"
                 android:hint="other" />
         </RadioGroup>
 
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.002dp"
+            android:background="#AAA" />
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/lightGray"
+            android:background="@color/white"
             android:orientation="horizontal">
 
             <EditText
@@ -135,9 +82,9 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:background="@color/lightGray"
+                android:background="@color/white"
                 android:gravity="center_vertical|right"
-                android:hint="پیام..."
+                android:hint="متن پیام ..."
                 android:minHeight="48dp"
                 android:padding="@dimen/space_small"
                 android:paddingRight="@dimen/space_medium"
