@@ -50,6 +50,14 @@
             android:name=".database.ChatContentProvider"
             android:authorities="rest.bef.befrestdemo.chat.contentprovider" />
 
+        <receiver
+            android:name=".AuthProblemReceiver"
+            android:exported="false">
+            <intent-filter>
+                <action android:name="rest.bef.broadcasts.ACTION_BEFREST_PUSH"/>
+            </intent-filter>
+        </receiver>
+
         <!--<service android:name="rest.bef.PushService" />-->
         <!--<receiver-->
         <!--android:name="rest.bef.BefrestConnectivityChangeReceiver"-->

@@ -1,10 +1,8 @@
 package rest.bef.befrestdemo;
 
 import android.app.Dialog;
-import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
-import android.content.IntentFilter;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.os.PersistableBundle;
@@ -50,6 +48,7 @@ public class ActivityMain extends AppCompatActivity implements LoaderManager.Loa
     private static final String TAG = "ActivityMain";
     @Bind(R.id.toolbar)
     Toolbar toolbar;
+
 
     @Bind(R.id.myId)
     TextView myId;
@@ -223,6 +222,13 @@ public class ActivityMain extends AppCompatActivity implements LoaderManager.Loa
             sendMessage();
         else if (vId == R.id.contacts)
             showContactsList();
+        else if (vId == R.id.myId)
+            try {
+                Log.d(TAG, "removing topic");
+                befrest.removeTopic("hojjat");
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
     }
 
     private void sendMessage() {

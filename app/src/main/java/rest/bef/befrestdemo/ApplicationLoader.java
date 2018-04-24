@@ -1,12 +1,12 @@
 /******************************************************************************
  * Copyright 2015-2016 BefrestImpl
- * <p/>
+ * <p>
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- * <p/>
+ * You may obtain a.js copy of the License at
+ * <p>
  * http://www.apache.org/licenses/LICENSE-2.0
- * <p/>
+ * <p>
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -19,12 +19,9 @@ package rest.bef.befrestdemo;
 import android.app.Application;
 import android.content.Context;
 import android.content.SharedPreferences;
-import android.util.ArraySet;
 import android.util.Log;
 
-import java.util.ArrayList;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 import rest.bef.BefrestFactory;
@@ -45,23 +42,23 @@ public class ApplicationLoader extends Application {
             BefrestFactory.getInstance(this).start();
     }
 
-    public static void clearOldDataInFirstRunVersion2(Context context){
+    public static void clearOldDataInFirstRunVersion2(Context context) {
         SharedPreferences prefs = PrefrenceManager.getPrefs(context);
-        if(prefs.getBoolean(PREF_IS_FIRST_RUN_VERSION2 , true)){
+        if (prefs.getBoolean(PREF_IS_FIRST_RUN_VERSION2, true)) {
             prefs.edit().clear().commit();
-            prefs.edit().putBoolean(PREF_IS_FIRST_RUN_VERSION2 , false).commit();
+            prefs.edit().putBoolean(PREF_IS_FIRST_RUN_VERSION2, false).commit();
         }
     }
 
-    static void dontShowNotifFor(String who){
+    static void dontShowNotifFor(String who) {
         dontShowNotifFor.add(who);
     }
 
-    static void showNotifFor(String who){
+    static void showNotifFor(String who) {
         dontShowNotifFor.remove(who);
     }
 
-    static boolean shouldFireNotifFor(String who){
+    static boolean shouldFireNotifFor(String who) {
         for (String s : dontShowNotifFor) {
             Log.d(TAG, s);
         }

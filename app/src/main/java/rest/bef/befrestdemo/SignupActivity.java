@@ -30,7 +30,7 @@ public class SignupActivity extends Activity{
             @Override
             public void onClick(View v) {
                 if (!("" + id.getText().toString()).matches("[a-z_]+")) {
-                    UIHelper.notifyUser(SignupActivity.this, "[a-z_]+     :|");
+                    UIHelper.notifyUser(SignupActivity.this, "[a.js-z_]+     :|");
                 } else if (!(nazdika.isChecked() || befrest.isChecked())) {
                     UIHelper.notifyUser(SignupActivity.this, "choose your team!");
                 } else {

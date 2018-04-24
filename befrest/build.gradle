@@ -6,19 +6,18 @@ ext {
     bintrayName = 'befrest'
 
     publishedGroupId = 'rest.bef'
-    libraryName = 'BefrestImpl'
+    libraryName = 'Befrest'
     artifact = 'befrest'
 
     libraryDescription = 'Simple PUSH Notification Library For Android'
 
     siteUrl = 'http://bef.rest'
-    gitUrl = 'https://github.com/hojjat-imani/BefrestImpl.git'
-
-    libraryVersion = '1.1.6'
+    gitUrl = 'https://github.com/hojjat-imani/Befrest.git'
+    libraryVersion = '2.1.2'
 
     developerId = 'befrest'
-    developerName = 'BefrestImpl'
-    developerEmail = 'tech@bef,rest'
+    developerName = 'Befrest'
+    developerEmail = 'tech@bef.rest'
 
     licenseName = 'The Apache Software License, Version 2.0'
     licenseUrl = 'http://www.apache.org/licenses/LICENSE-2.0.txt'
@@ -26,14 +25,14 @@ ext {
 }
 
 android {
-    compileSdkVersion 23
-    buildToolsVersion "23.0.2"
+    compileSdkVersion 25
+    buildToolsVersion "25.0.2"
 
     defaultConfig {
         minSdkVersion 10
-        targetSdkVersion 23
+        targetSdkVersion 25
         versionCode 1
-        versionName "1.1.4"
+        versionName "2.1.0"
     }
     buildTypes {
         release {
@@ -43,14 +42,9 @@ android {
     }
 }
 
-//for generating libraries jar file
-//task jar(type: Jar, dependsOn: 'assembleRelease') {
-//    from fileTree(dir: 'handleException/intermediates/classes/release')
-//}
 task jar(type: Jar, dependsOn: 'assembleRelease') {
     from fileTree(dir: 'build/intermediates/classes/release')
 }
-
 
 //apply from: 'https://raw.githubusercontent.com/nuuneoi/JCenter/master/installv1.gradle'
 
@@ -90,7 +84,6 @@ install {
                     connection gitUrl
                     developerConnection gitUrl
                     url siteUrl
-
                 }
             }
         }
@@ -119,6 +112,7 @@ task javadocJar(type: Jar, dependsOn: javadoc) {
     classifier = 'javadoc'
     from javadoc.destinationDir
 }
+
 artifacts {
     archives javadocJar
     archives sourcesJar

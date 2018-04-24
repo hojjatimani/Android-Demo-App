@@ -46,6 +46,7 @@
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
                     android:layout_toRightOf="@+id/icon"
+                    android:onClick="onViewClicked"
                     android:text="\@hojjat"
                     android:textAppearance="@style/TextAppearance.AppCompat.Medium"
                     android:textColor="#FFF" />

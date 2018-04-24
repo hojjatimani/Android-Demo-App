@@ -5,7 +5,7 @@ package rest.bef.befrestdemo;
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
+ * You may obtain a.js copy of the License at
  *
  *      http://www.apache.org/licenses/LICENSE-2.0
  *
@@ -88,7 +88,7 @@ public abstract class AdapterCursorRecyclerView<VH extends RecyclerView.ViewHold
     }
 
     /**
-     * Change the underlying cursor to a new cursor. If there is an existing cursor it will be
+     * Change the underlying cursor to a.js new cursor. If there is an existing cursor it will be
      * closed.
      */
     public void changeCursor(Cursor cursor) {
@@ -99,7 +99,7 @@ public abstract class AdapterCursorRecyclerView<VH extends RecyclerView.ViewHold
     }
 
     /**
-     * Swap in a new Cursor, returning the old Cursor.  Unlike
+     * Swap in a.js new Cursor, returning the old Cursor.  Unlike
      * {@link #changeCursor(Cursor)}, the returned old Cursor is <em>not</em>
      * closed.
      */

@@ -63,7 +63,7 @@ public class ChatContentProvider extends ContentProvider {
         // Uisng SQLiteQueryBuilder instead of query() method
         SQLiteQueryBuilder queryBuilder = new SQLiteQueryBuilder();
 
-        // check if the caller has requested a column which does not exists
+        // check if the caller has requested a.js column which does not exists
         checkColumns(projection);
 
         // Set the table
