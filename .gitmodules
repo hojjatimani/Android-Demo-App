@@ -1,0 +1,3 @@
+[submodule "befrest/src/main/java"]
+    path = befrest/src/main/java
+    url = git@github.com:hojjatimani/AndroidSdk.git
